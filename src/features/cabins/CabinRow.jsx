@@ -38,3 +38,20 @@ const Discount = styled.div`
   font-weight: 500;
   color: var(--color-green-700);
 `;
+
+function CabinRow({ cabin }) {
+  const { name, maxCapacity, regularPrice, discount, image } = cabin;
+
+  return (
+    <TableRow role="row">
+      <Img src={image} />
+      <Cabin>{name}</Cabin>
+      <div>{maxCapacity}</div>
+      <Price>{regularPrice}円</Price>
+      <Price>{discount}％</Price>
+      <button>削除</button>
+    </TableRow>
+  );
+}
+
+export default CabinRow;
