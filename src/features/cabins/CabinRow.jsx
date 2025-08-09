@@ -1,4 +1,7 @@
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import styled from "styled-components";
+import { deleteCabin } from "../../services/apiCabins";
+import { AiFillFileAdd } from "react-icons/ai";
 
 const TableRow = styled.div`
   display: grid;
@@ -40,7 +43,27 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
-  const { name, maxCapacity, regularPrice, discount, image } = cabin;
+  const {
+    id: cabinId,
+    name,
+    maxCapacity,
+    regularPrice,
+    discount,
+    image,
+  } = cabin;
+
+  const queryClient = useQueryClient();
+
+  const { isLoading: isDeleting, mutate } = useMutation({
+    mutationFn: deleteCabin,
+    onSuccess: () => {
+      alert("施設を削除しました");
+      queryClient.invalidateQueries({
+        queryKey: ["cabins"],
+      });
+    },
+    onError: (err) => alert(err.message),
+  });
 
   return (
     <TableRow role="row">
@@ -49,7 +72,9 @@ function CabinRow({ cabin }) {
       <div>{maxCapacity}</div>
       <Price>{regularPrice}円</Price>
       <Price>{discount}％</Price>
-      <button>削除</button>
+      <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
+        削除
+      </button>
     </TableRow>
   );
 }
