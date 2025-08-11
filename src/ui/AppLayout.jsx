@@ -14,6 +14,7 @@ const Main = styled.main`
   /* background-color: var(--color-grey-50); */
   background-color: aqua;
   padding: 4rem 4.8rem 6.4rem;
+  overflow: scroll;
 `;
 
 const Container = styled.div`
