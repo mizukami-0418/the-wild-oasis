@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { deleteCabin } from "../../services/apiCabins";
 import { AiFillFileAdd } from "react-icons/ai";
 import toast from "react-hot-toast";
+import { useState } from "react";
+import CreateCabinForm from "./CreateCabinForm";
 
 const TableRow = styled.div`
   display: grid;
@@ -44,6 +46,8 @@ const Discount = styled.div`
 `;
 
 function CabinRow({ cabin }) {
+  const [showForm, setShowForm] = useState(false);
+
   const {
     id: cabinId,
     name,
@@ -67,16 +71,22 @@ function CabinRow({ cabin }) {
   });
 
   return (
-    <TableRow role="row">
-      <Img src={image} />
-      <Cabin>{name}</Cabin>
-      <div>{maxCapacity}</div>
-      <Price>{regularPrice}円</Price>
-      <Price>{discount}％</Price>
-      <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
-        削除
-      </button>
-    </TableRow>
+    <>
+      <TableRow role="row">
+        <Img src={image} />
+        <Cabin>{name}</Cabin>
+        <div>{maxCapacity}</div>
+        <Price>{regularPrice}円</Price>
+        <Price>{discount}円</Price>
+        <div>
+          <button onClick={() => setShowForm((show) => !show)}>編集</button>
+          <button onClick={() => mutate(cabinId)} disabled={isDeleting}>
+            削除
+          </button>
+        </div>
+      </TableRow>
+      {showForm && <CreateCabinForm cabinToEdit={cabin} />}
+    </>
   );
 }
 
