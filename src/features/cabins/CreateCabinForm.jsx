@@ -1,4 +1,4 @@
-import styled from "styled-components";
+// import styled from "styled-components";
 
 import Input from "../../ui/Input";
 import Form from "../../ui/Form";
@@ -6,7 +6,6 @@ import Button from "../../ui/Button";
 import FileInput from "../../ui/FileInput";
 import Textarea from "../../ui/Textarea";
 import { useForm } from "react-hook-form";
-import { GiHandOfGod } from "react-icons/gi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createCabin } from "../../services/apiCabins";
 import toast from "react-hot-toast";
@@ -67,11 +66,11 @@ function CreateCabinForm() {
   });
 
   function onSubmit(data) {
-    mutate(data);
+    mutate({ ...data, image: data.image[0] });
   }
 
   function onError(errors) {
-    // console.log(errors);
+    console.log(errors);
   }
 
   return (
@@ -125,7 +124,7 @@ function CreateCabinForm() {
           {...register("discount", {
             required: "入力必須項目です",
             validate: (value) =>
-              value >= getValues().regularPrice || "定価より低く設定してね",
+              value < getValues().regularPrice || "定価より低く設定してね",
           })}
         />
       </FormRow>
@@ -143,7 +142,14 @@ function CreateCabinForm() {
       </FormRow>
 
       <FormRow label="画像">
-        <FileInput id="image" accept="image/*" />
+        <FileInput
+          id="image"
+          accept="image/*"
+          type="file"
+          {...register("image", {
+            required: "入力必須項目です",
+          })}
+        />
       </FormRow>
 
       <FormRow>
