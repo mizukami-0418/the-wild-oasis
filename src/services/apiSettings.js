@@ -5,7 +5,7 @@ export async function getSettings() {
 
   if (error) {
     console.error(error);
-    throw new Error("Settings could not be loaded");
+    throw new Error("設定の読み込みに失敗しました 😂");
   }
   return data;
 }
@@ -21,7 +21,7 @@ export async function updateSetting(newSetting) {
 
   if (error) {
     console.error(error);
-    throw new Error("Settings could not be updated");
+    throw new Error("設定の更新に失敗しました 😂");
   }
   return data;
 }
