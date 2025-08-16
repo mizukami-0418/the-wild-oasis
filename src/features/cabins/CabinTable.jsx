@@ -32,12 +32,14 @@ function CabinTable() {
         <div>施設</div>
         <div>人数</div>
         <div>価格</div>
-        <div>特価</div>
+        <div>割引</div>
         <div></div>
       </Table.Header>
-      {cabins.map((cabin) => (
-        <CabinRow cabin={cabin} key={cabin.id} />
-      ))}
+
+      <Table.Body
+        data={cabins}
+        render={(cabin) => <CabinRow cabin={cabin} key={cabin.id} />}
+      />
     </Table>
   );
 }
