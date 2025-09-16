@@ -11,7 +11,12 @@ const LoginLayout = styled.main`
 `;
 
 function Login() {
-  return <LoginLayout>Login</LoginLayout>;
+  return <h1>ログイン</h1>;
+  // <LoginLayout>
+  //   <Logo />
+  //   <Heading as="h3">ログイン</Heading>
+  //   <LoginForm />
+  // </LoginLayout>
 }
 
 export default Login;
