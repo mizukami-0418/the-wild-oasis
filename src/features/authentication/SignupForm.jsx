@@ -1,3 +1,4 @@
+import { useForm } from "react-hook-form";
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
@@ -6,22 +7,67 @@ import Input from "../../ui/Input";
 // Email regex: /\S+@\S+\.\S+/
 
 function SignupForm() {
+  const { register, formState, getValues, handleSubmit } = useForm();
+  const { errors } = formState;
+
+  function onSubmit(data) {
+    console.log(data);
+  }
+
   return (
-    <Form>
-      <FormRow label="Full name" error={""}>
-        <Input type="text" id="fullName" />
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <FormRow label="ユーザー名" error={errors?.fullName?.message}>
+        <Input
+          type="text"
+          id="fullName"
+          {...register("fullName", { required: "この項目は入力してください" })}
+        />
       </FormRow>
 
-      <FormRow label="Email address" error={""}>
-        <Input type="email" id="email" />
+      <FormRow label="メールアドレス" error={errors?.email?.message}>
+        <Input
+          type="email"
+          id="email"
+          {...register("email", {
+            required: "この項目は入力してください",
+            pattern: {
+              value: /\S+@\S+\.\S+/,
+              message: "メールアドレスの形式が正しくありません",
+            },
+          })}
+        />
       </FormRow>
 
-      <FormRow label="Password (min 8 characters)" error={""}>
-        <Input type="password" id="password" />
+      <FormRow
+        label="パスワード(8文字以上で入力してください)"
+        error={errors?.password?.message}
+      >
+        <Input
+          type="password"
+          id="password"
+          {...register("password", {
+            required: "この項目は入力してください",
+            minLength: {
+              value: 8,
+              message: "パスワードは8文字以上で入力してください",
+            },
+          })}
+        />
       </FormRow>
 
-      <FormRow label="Repeat password" error={""}>
-        <Input type="password" id="passwordConfirm" />
+      <FormRow
+        label="確認用パスワード"
+        error={errors?.passwordConfirm?.message}
+      >
+        <Input
+          type="password"
+          id="passwordConfirm"
+          {...register("passwordConfirm", {
+            required: "この項目は入力してください",
+            validate: (value) =>
+              value === getValues().password || "パスワードが一致しません",
+          })}
+        />
       </FormRow>
 
       <FormRow>
