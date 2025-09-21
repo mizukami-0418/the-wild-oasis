@@ -18,38 +18,32 @@ function UpdatePasswordForm() {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow
-        label="Password (min 8 characters)"
-        error={errors?.password?.message}
-      >
+      <FormRow label="新規パスワード" error={errors?.password?.message}>
         <Input
           type="password"
           id="password"
           autoComplete="current-password"
           disabled={isUpdating}
           {...register("password", {
-            required: "This field is required",
+            required: "このフィールドは必須項目です",
             minLength: {
               value: 8,
-              message: "Password needs a minimum of 8 characters",
+              message: "パスワードは8文字以上である必要があります",
             },
           })}
         />
       </FormRow>
 
-      <FormRow
-        label="Confirm password"
-        error={errors?.passwordConfirm?.message}
-      >
+      <FormRow label="パスワード確認" error={errors?.passwordConfirm?.message}>
         <Input
           type="password"
           autoComplete="new-password"
           id="passwordConfirm"
           disabled={isUpdating}
           {...register("passwordConfirm", {
-            required: "This field is required",
+            required: "このフィールドは必須項目です",
             validate: (value) =>
-              getValues().password === value || "Passwords need to match",
+              getValues().password === value || "パスワードが一致しません",
           })}
         />
       </FormRow>
