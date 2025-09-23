@@ -6,8 +6,6 @@ export function useLogout() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  console.log("useLogout called");
-
   const { mutate: logout, isLoading } = useMutation({
     mutationFn: logoutApi,
     onSuccess: () => {
@@ -15,7 +13,6 @@ export function useLogout() {
       navigate("/login", { replace: true });
     },
   });
-  console.log("logout function and isLoading state created");
 
   return { logout, isLoading };
 }
