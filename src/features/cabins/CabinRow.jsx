@@ -8,6 +8,7 @@ import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
+import { formatCurrency } from "../../utils/helpers";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -78,8 +79,12 @@ function CabinRow({ cabin }) {
       <Img src={image} />
       <Cabin>{name}</Cabin>
       <div>{maxCapacity}</div>
-      <Price>{regularPrice}円</Price>
-      {discount ? <Discount>{discount}円</Discount> : <span>&mdash;</span>}
+      <Price>{formatCurrency(regularPrice)}</Price>
+      {discount ? (
+        <Discount>{formatCurrency(discount)}</Discount>
+      ) : (
+        <span>&mdash;</span>
+      )}
       <div>
         <Modal>
           <Menus.Menu>
@@ -109,7 +114,7 @@ function CabinRow({ cabin }) {
 
             <Modal.Window name="delete">
               <ConfirmDelete
-                resourceName="cabins"
+                resourceName="宿泊施設"
                 disabled={isDeleting}
                 onConfirm={() => deleteCabin(cabinId)}
               />

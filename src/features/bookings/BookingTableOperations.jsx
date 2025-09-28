@@ -8,22 +8,22 @@ function BookingTableOperations() {
       <Filter
         filterField="status"
         options={[
-          { value: "all", label: "All" },
-          { value: "checked-out", label: "Checked out" },
-          { value: "checked-in", label: "Checked in" },
-          { value: "unconfirmed", label: "Unconfirmed" },
+          { value: "all", label: "全て" },
+          { value: "checked-out", label: "チェックアウト" },
+          { value: "checked-in", label: "チェックイン" },
+          { value: "unconfirmed", label: "未確認" },
         ]}
       />
 
       <SortBy
         options={[
-          { value: "startDate-desc", label: "Sort by date (recent first)" },
-          { value: "startDate-asc", label: "Sort by date (earlier first)" },
+          { value: "startDate-desc", label: "新しい日付順" },
+          { value: "startDate-asc", label: "古い日付順" },
           {
             value: "totalPrice-desc",
-            label: "Sort by amount (high first)",
+            label: "価格が高い順",
           },
-          { value: "totalPrice-asc", label: "Sort by amount (low first)" },
+          { value: "totalPrice-asc", label: "価格が安い順" },
         ]}
       />
     </TableOperations>

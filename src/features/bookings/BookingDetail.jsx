@@ -48,10 +48,10 @@ function BookingDetail() {
     <>
       <Row type="horizontal">
         <HeadingGroup>
-          <Heading as="h1">Booking #{bookingId}</Heading>
+          <Heading as="h1">予約番号 #{bookingId}</Heading>
           <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
         </HeadingGroup>
-        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
+        <ButtonText onClick={moveBack}>&larr; 戻る</ButtonText>
       </Row>
 
       <BookingDataBox booking={booking} />
@@ -82,7 +82,7 @@ function BookingDetail() {
 
           <Modal.Window name="delete">
             <ConfirmDelete
-              resourceName="booking"
+              resourceName="予約"
               disabled={isDeleting}
               onConfirm={() =>
                 deleteBooking(bookingId, {
@@ -94,7 +94,7 @@ function BookingDetail() {
         </Modal>
 
         <Button variation="secondary" onClick={moveBack}>
-          Back
+          戻る
         </Button>
       </ButtonGroup>
     </>

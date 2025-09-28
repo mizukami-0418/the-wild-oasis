@@ -23,10 +23,11 @@ const StyledConfirmDelete = styled.div`
 function ConfirmDelete({ resourceName, onConfirm, disabled, onCloseModal }) {
   return (
     <StyledConfirmDelete>
-      <Heading as="h3">Delete {resourceName}</Heading>
+      <Heading as="h3">{resourceName}を削除</Heading>
       <p>
-        Are you sure you want to delete this {resourceName} permanently? This
-        action cannot be undone.
+        この{resourceName}を削除してもよろしいですか？
+        <br />
+        この操作は元に戻せません。
       </p>
 
       <div>

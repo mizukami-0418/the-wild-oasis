@@ -69,8 +69,8 @@ function CheckinBooking() {
   return (
     <>
       <Row type="horizontal">
-        <Heading as="h1">Check in booking #{bookingId}</Heading>
-        <ButtonText onClick={moveBack}>&larr; Back</ButtonText>
+        <Heading as="h1">チェックイン 予約番号 #{bookingId}</Heading>
+        <ButtonText onClick={moveBack}>&larr; 戻る</ButtonText>
       </Row>
 
       <BookingDataBox booking={booking} />
@@ -110,10 +110,10 @@ function CheckinBooking() {
 
       <ButtonGroup>
         <Button onClick={handleCheckin} disabled={!confirmPaid || isCheckingIn}>
-          Check in booking #{bookingId}
+          チェックイン 予約番号 #{bookingId}
         </Button>
         <Button variation="secondary" onClick={moveBack}>
-          Back
+          戻る
         </Button>
       </ButtonGroup>
     </>

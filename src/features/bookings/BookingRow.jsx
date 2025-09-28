@@ -82,7 +82,7 @@ function BookingRow({
           {isToday(new Date(startDate))
             ? "Today"
             : formatDistanceFromNow(startDate)}{" "}
-          &rarr; {numNights} night stay
+          &rarr; {numNights} 泊滞在
         </span>
         <span>
           {format(new Date(startDate), "MMM dd yyyy")} &mdash;{" "}
@@ -131,7 +131,7 @@ function BookingRow({
 
         <Modal.Window name="delete">
           <ConfirmDelete
-            resourceName="booking"
+            resourceName="予約"
             disabled={isDeleting}
             onConfirm={() => deleteBooking(bookingId)}
           />
